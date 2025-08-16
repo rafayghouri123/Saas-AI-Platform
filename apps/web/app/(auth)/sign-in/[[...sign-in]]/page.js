@@ -1,12 +1,10 @@
-import React from 'react'
-import {SignIn} from "@clerk/nextjs"
+"use client"
+import {SigninView} from "../../../modules/auth/ui/components/views/sign-in-view"
 
 const Signin = () => {
   return (
-    <>
-    <h1>Hqlloooo</h1>
-    <SignIn/>
-    </>
+ 
+    <SigninView/>
   )
 }
 
