@@ -8,6 +8,8 @@ import { screenAtom } from "../../atoms/widget-atoms"
 import { error } from "console"
 import { WidgetErrorScreen } from "../screens/widget-error-screen"
 import { WidgetLoadingScreen } from "../screens/widget-loading-screen"
+import { WidgetSelectionScreen } from "../screens/widget-selection-screen"
+import { WidgetChatScreen } from "../screens/widget-chat-screen"
 
 interface Props{
     organizationId:string|null
@@ -19,11 +21,11 @@ export const WidgetView =({organizationId}:Props)=>{
     const screenComponents= {
         error:<WidgetErrorScreen/>,
         loading:<WidgetLoadingScreen organizationId={organizationId}/>,
-        selection:<p>TODO:selection</p>,
+        selection:<WidgetSelectionScreen />,
         voice:<p>TODO:voice</p>,
         auth:<WidgetAuthScreen/>,
         inbox:<p>TODO:inbox</p>,
-        chat:<p>TODO:chat</p>,
+        chat:<WidgetChatScreen/>,
         contact:<p>TODO:contact</p>
  }
     return(

@@ -12,5 +12,6 @@ export const loadingMessageAtom=atom<string|null>(null)
 
 export const contactSessionIdAtomFamily = atomFamily((organizationId:string)=>atomWithStorage<Id<"contactSessions">|null>(`${CONTACT_SESSION_KEY}_${organizationId}`,null))
 
-
 export const organizationIdAtom = atom<string|null>(null)
+
+export const conversationIdAtom = atom<Id<"conversations">|null>(null)
