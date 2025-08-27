@@ -9,7 +9,7 @@ import { useMutation } from "convex/react"
 import {api} from "@workspace/backend/convex/_generated/api"
 import { Doc } from "/Users/Hamza/Saas-Ai-Platform/packages/backend/convex/_generated/dataModel"
 import { useAtomValue, useSetAtom } from "jotai"
-import { contactSessionIdAtomFamily, organizationIdAtom } from "../../atoms/widget-atoms"
+import { contactSessionIdAtomFamily, organizationIdAtom, screenAtom } from "../../atoms/widget-atoms"
 
 
 
@@ -19,7 +19,10 @@ const formSchema = z.object({
 })
 
 export const WidgetAuthScreen = ()=>{
+
+
     const organizationId = useAtomValue(organizationIdAtom)
+    const setScreen = useSetAtom(screenAtom)
     const setContactSessionId = useSetAtom(contactSessionIdAtomFamily(organizationId||""))
 
 
@@ -53,6 +56,7 @@ export const WidgetAuthScreen = ()=>{
         })
 
         setContactSessionId(contactSessionId)
+        setScreen("selection")
     }
 
     return(
