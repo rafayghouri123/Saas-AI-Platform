@@ -11,7 +11,7 @@ interface conversationStatusProps{
 const statusConfig = {
     resolved:{
         icon:CheckIcon,
-        bgColor:"bg-[3FB62F]"
+        bgColor:"bg-[#3FB62F]"
     },
     unresolved:{
         icon:ArrowRightIcon,
