@@ -4,6 +4,8 @@ import { internal } from "../_generated/api";
 import { supportAgent } from "../system/ai/agents/supportAgent";
 import { paginationOptsValidator } from "convex/server";
 import { threadId } from "worker_threads";
+import { resolveConversation } from "../system/ai/tools/resolveConversation";
+import { escalateConversation } from "../system/ai/tools/escalateConversation";
 
 
 export const create = action({
@@ -50,11 +52,28 @@ export const create = action({
 
         //IMPLEMENT SUBSCRIPTION CHECK
 
-        await supportAgent.generateText(
-            ctx,
-            {threadId:args.threadId},
-            {prompt:args.prompt}
-        )
+        const shouldTriggerAgent = conversation.status==="unresolved"
+
+        if(shouldTriggerAgent){
+
+            await supportAgent.generateText(
+                ctx,
+                {threadId:args.threadId},
+                {
+                    prompt:args.prompt,
+                    tools:{
+                        resolveConversation,
+                        escalateConversation
+                        }
+                }
+                
+            )
+         }else{
+            await supportAgent.saveMessage(ctx,{
+                    threadId:conversation.threadId,
+                prompt:args.prompt
+            })
+         }
     }
 })
 
